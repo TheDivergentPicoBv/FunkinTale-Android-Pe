@@ -54,6 +54,9 @@ class VisualsUISubState extends BaseOptionsMenu
 			'bool', true);
 		addOption(option);
 
+		var option:Option = new Option('Combo Stacking', Ratings and Combo won't stack, saving on System Memory and improving their Readability", 'comboStacking', 'bool', true);
+                addOption(option);
+
 		var option:Option = new Option('Health Bar Transparency', 'How much transparent should the health bar and icons be.', 'healthBarAlpha', 'percent', 1);
 		option.scrollSpeed = 1.6;
 		option.minValue = 0.0;

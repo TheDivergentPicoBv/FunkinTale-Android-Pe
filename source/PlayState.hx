@@ -294,6 +294,13 @@ class PlayState extends MusicBeatState
 	// Less laggy controls
 	private var keysArray:Array<Dynamic>;
 
+	// stores the last judgement object
+	public static var lastRating:FlxSprite;
+	// stores the last combo sprite object
+	public static var lastCombo:FlxSprite;
+	// stores the last combo score objects in an array
+	public static var lastScore:Array<FlxSprite> = [];
+
 	override public function create()
 	{
 		Paths.destroyLoadedImages();
@@ -4035,9 +4042,9 @@ class PlayState extends MusicBeatState
 			msTxt.text = msTiming + " ms";
 			msTxt.size = 20;
 
-			//              if (msTxt.alpha != 1)  { //bruh is it bad to reput it to 1 if its 1?
+			if (msTxt.alpha != 1) 
 			msTxt.alpha = 1;
-			//              }
+
 			if (ClientPrefs.msTxt)
 				add(msTxt);
 
@@ -4058,6 +4065,12 @@ class PlayState extends MusicBeatState
 
 			comboSpr.velocity.x += FlxG.random.int(1, 10);
 			insert(members.indexOf(strumLineNotes), rating);
+	
+			if (!ClientPrefs.comboStacking)
+			{
+				if (lastRating != null) lastRating.kill();
+				lastRating = rating;
+			}
 
 			if (!PlayState.isPixelStage)
 			{
@@ -4103,11 +4116,24 @@ class PlayState extends MusicBeatState
 			{
 				seperatedScore.push(Math.floor(combo / 1000) % 10);
 			}
-			//		seperatedScore.push(Math.floor(combo / 100) % 10);
-			//		seperatedScore.push(Math.floor(combo / 10) % 10);
-			//		seperatedScore.push(combo % 10);
+			seperatedScore.push(Math.floor(combo / 100) % 10);
+			seperatedScore.push(Math.floor(combo / 10) % 10);
+			seperatedScore.push(combo % 10);
 
 			var daLoop:Int = 0;
+			if (!ClientPrefs.comboStacking)
+			{
+				if (lastCombo != null) lastCombo.kill();
+				lastCombo = comboSpr;
+			}
+			if (lastScore != null)
+			{
+				while (lastScore.length > 0)
+				{
+					lastScore[0].kill();
+					lastScore.remove(lastScore[0]);
+				}
+			}
 			for (i in seperatedScore)
 			{
 				var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
@@ -4120,6 +4146,9 @@ class PlayState extends MusicBeatState
 
 				numScore.x += ClientPrefs.comboOffset[2];
 				numScore.y -= ClientPrefs.comboOffset[3];
+
+				if (ClientPrefs.!comboStacking)
+				lastScore.push(numScore);
 
 				if (!PlayState.isPixelStage)
 				{
