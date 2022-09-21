@@ -4101,9 +4101,8 @@ class PlayState extends MusicBeatState
 			var comboSplit:Array<String> = (combo + "").split('');
 
 			if (ClientPrefs.normalCombo)
-			{
 				seperatedScore.push(0);
-			}
+
 			// credits to kade engine
 
 			for (i in 0...comboSplit.length)
