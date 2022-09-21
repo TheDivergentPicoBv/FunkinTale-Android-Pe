@@ -54,10 +54,10 @@ class VisualsUISubState extends BaseOptionsMenu
 			'bool', true);
 		addOption(option);
 
-		var option:Option = new Option('Combo Stacking', Ratings and Combo won't stack, saving on System Memory and improving their Readability", 'comboStacking', 'bool', true);
+		var option:Option = new Option('Combo Stacking', "Ratings and Combo won't stack, saving on System Memory and improving their Readability", 'comboStacking', 'bool', true);
                 addOption(option);
 
-		var option:Option = new Option('Health Bar Transparency', 'How much transparent should the health bar and icons be.', 'healthBarAlpha', 'percent', 1);
+		var option:Option = new Option('Health Bar Transparency', 'How much transparency should the health bar and icons have.', 'healthBarAlpha', 'percent', 1);
 		option.scrollSpeed = 1.6;
 		option.minValue = 0.0;
 		option.maxValue = 1;
@@ -65,7 +65,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.decimals = 1;
 		addOption(option);
 
-		var option:Option = new Option('FPS Counter', 'If unchecked, hides FPS Counter.', 'showFPS', 'bool', true);
+		var option:Option = new Option('FPS Counter', 'If unchecked, hides the FPS Counter.', 'showFPS', 'bool', true);
 		addOption(option);
 		option.onChange = onChangeFPSCounter;
 
