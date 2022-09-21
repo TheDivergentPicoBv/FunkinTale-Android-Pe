@@ -107,38 +107,6 @@ class AndroidControls extends FlxSpriteGroup
 		}
 	}
 
-	public static function setOpacity(opacity:Float, isHitbox:Bool = false):Void
-	{
-		if (!isHitbox)
-		{
-			FlxG.save.data.virtualPadOpacity = opacity;
-			FlxG.save.flush();
-		}
-		else
-		{
-			FlxG.save.data.hitboxOpacity = opacity;
-			FlxG.save.flush();
-		}
-	}
-
-	public static function getOpacity(isHitbox:Bool = false):Float
-	{
-		if (!isHitbox)
-		{
-			if (FlxG.save.data.virtualPadOpacity == null)
-			{
-				FlxG.save.data.virtualPadOpacity = 0.6;
-				FlxG.save.flush();
-			}
-
-			return FlxG.save.data.virtualPadOpacity;
-		}
-		else
-		{
-			return FlxG.save.data.hitboxOpacity;
-		}
-	}
-
 	function initControler(vpadMode:Int)
 	{
 		switch (vpadMode)
