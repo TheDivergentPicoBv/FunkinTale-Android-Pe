@@ -4146,7 +4146,7 @@ class PlayState extends MusicBeatState
 				numScore.x += ClientPrefs.comboOffset[2];
 				numScore.y -= ClientPrefs.comboOffset[3];
 
-				if (ClientPrefs.!comboStacking)
+				if (!ClientPrefs.comboStacking)
 				lastScore.push(numScore);
 
 				if (!PlayState.isPixelStage)
